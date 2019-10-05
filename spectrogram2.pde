@@ -97,17 +97,19 @@ void draw()
 
 void listen() {
   if (fft == null && !musicMode) {
-    surface.setTitle("spectrogram : Listen mode");
     in = minim.getLineIn(Minim.STEREO, bufferSize);
-    
-    fft = new FFT(bufferSize, in.sampleRate());
-    fftsize = fft.specSize();
-    println("[Listen]");
-    println("buffer size : " +bufferSize);
-    println("sampling rate : " +in.sampleRate());
-    println("fft spec size : " +fft.specSize());
-    println("fft bandwidth : " +fft.getBandWidth());
-    gain = 1000;
+
+    if(in != null){
+      surface.setTitle("spectrogram : Listen mode");
+      fft = new FFT(bufferSize, in.sampleRate());
+      fftsize = fft.specSize();
+      println("[Listen]");
+      println("buffer size : " +bufferSize);
+      println("sampling rate : " +in.sampleRate());
+      println("fft spec size : " +fft.specSize());
+      println("fft bandwidth : " +fft.getBandWidth());
+      gain = 1000;
+    }
   }
 }
 
